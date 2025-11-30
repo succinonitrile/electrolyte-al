@@ -1,0 +1,29 @@
+# SAFE TO MODIFY: Adjust these to fit your RTX 4060 memory constraints
+hardware:
+  use_gpu: true
+  cuda_device: "cuda:0"  # Strictly single GPU
+  num_workers: 0         # Set to 0 for Windows/Desktop stability
+
+model:
+  embedding_dim: 64      # Keep small for 8GB VRAM
+  gnn_layers: 3
+  hidden_dim: 128
+  dropout: 0.1
+  ensemble_size: 5       # Number of models for uncertainty
+
+training:
+  batch_size: 32         # Increase if VRAM allows, decrease if OOM
+  epochs: 100
+  learning_rate: 0.001
+
+active_learning:
+  candidate_pool_size: 5000 # Limit to keep inference fast on desktop
+  n_high_performance: 5
+  n_low_performance: 5
+  n_uncertainty: 5
+  ucb_beta: 1.0             # Trade-off parameter for UCB/LCB
+
+constraints:
+  max_cycles_cutoff: 500    # Censoring threshold
+  forbidden_smarts:         # Add new forbidden patterns here
+    - "[#8]-[#1]"           # Generic hydroxyl (too broad, example only)
