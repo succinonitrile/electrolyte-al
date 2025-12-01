@@ -94,7 +94,7 @@ FE6,CCOC(=O)c1ccc(OC(F)C(F)F)cc1,TRUE,Fluoryx Labs,Hydrofluoroether
 FE7,COC(F)(F)C(F)F,TRUE,Fluoryx Labs,Hydrofluoroether
 FE8,COC(F)(F)C(F)C(F)(F)F,TRUE,Fluoryx Labs,Hydrofluoroether
 FE9,CCOC(F)(F)C(F)F,TRUE,Fluoryx Labs,Hydrofluoroether
-FE10,COC(CF3)(CF3)C(F)C(F)(F)CF3,TRUE,Fluoryx Labs,Hydrofluoroether
+FE10,COC(C(F)(F)F)(C(F)(F)F)C(F)C(F)(F)CF3,TRUE,Fluoryx Labs,Hydrofluoroether
 FE11,COC(C(F)F)C(F)(F)C(F)F,TRUE,Fluoryx Labs,Hydrofluoroether
 FE12,CCCCOC(C(F)F)C(F)F,TRUE,Fluoryx Labs,Hydrofluoroether
 FE13,CC(C)COC(C(F)F)C(F)F,TRUE,Fluoryx Labs,Hydrofluoroether
@@ -260,7 +260,7 @@ Allyl 1H 1H heptafluorobutyl ether,C=COCC(C(C(F)(F)F)(F)F)(F)F,TRUE,Aladdin,Fluo
 Ethyl 3 (Dimethylamino) 3 ethoxy 2 2 difluoropropionate,CCOC(=O)C(C(OC)N(C)C)(F)F (Smiles approx),TRUE,Aladdin,Fluorinated amino-ester
 Methyl Difluoroacetate,COC(=O)C(F)F,TRUE,Aladdin,Fluorinated Ester
 Methyl heptafluoropropylketone,CC(=O)C(C(C(F)(F)F)(F)F)(F)F,TRUE,Aladdin,Fluorinated Ketone
-Diethyl tetrafluorosuccinate,CCOC(=O)C(C(=O)OCC)(F)F)(F)F,TRUE,Aladdin,Fluorinated Diester
+Diethyl tetrafluorosuccinate,CCOC(=O)C(F)(F)C(F)(F)C(=O)OCC,TRUE,Aladdin,Fluorinated Diester
 Dimethyl difluoromalonate,COC(=O)C(C(=O)OC)(F)F,TRUE,Aladdin,Fluorinated Diester
 Difluoromethyl 2 2 3 3 tetrafluoropropyl ether,C(C(C(F)F)(F)F)OC(F)F,TRUE,Aladdin,Fluorinated ether
 Heptafluoro 2 2 3 trichlorobutane,C(C(C(F)(F)F)(Cl)Cl)(C(F)(F)F)(F)Cl,TRUE,Aladdin,Halogenated butane
