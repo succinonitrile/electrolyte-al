@@ -3,6 +3,7 @@ import numpy as np
 import random
 import uuid
 from typing import List, Optional
+from rdkit import Chem # <--- Added to validate molecules
 from data_model.types import Formulation, Component
 
 class CandidateGenerator:
@@ -18,21 +19,47 @@ class CandidateGenerator:
 
     def _load_and_categorize_inventory(self):
         """
-        Reads the inventory CSV from the path stored in the purchasability manager
-        and categorizes chemicals into salts, solvents, and additives based on notes.
+        Reads the inventory CSV and categorizes chemicals.
+        Filters out invalid SMILES automatically to prevent crashes.
         """
         try:
-            # We access the CSV path stored in the manager
             df = pd.read_csv(self.purchasing.csv_path)
             
-            # Filter for purchasable items only
+            # 1. Clean Headers
+            df.columns = df.columns.str.strip()
+            
+            # 2. Clean Boolean Column
+            if df['purchasable'].dtype == 'object':
+                df['purchasable'] = df['purchasable'].astype(str).str.strip().str.upper() == 'TRUE'
+            
+            # 3. Filter Purchasable
             df = df[df['purchasable'] == True]
             
+            valid_count = 0
+            skipped_count = 0
+
             for _, row in df.iterrows():
-                # Basic heuristic to categorize components based on the 'notes' column
                 notes = str(row.get('notes', '')).lower()
                 name = row['name']
-                smiles = row['smiles']
+                smiles = str(row['smiles']).strip()
+                
+                # --- VALIDATION CHECK ---
+                # Skip explicit placeholders
+                if "INVALID" in smiles or "FALSE" in smiles or not smiles:
+                    skipped_count += 1
+                    continue
+
+                # Check if RDKit can parse it
+                mol = Chem.MolFromSmiles(smiles)
+                if mol is None:
+                    # Log only the first few errors to avoid spamming
+                    if skipped_count < 3:
+                        print(f"Warning: Skipping invalid SMILES: {smiles}")
+                    elif skipped_count == 3:
+                        print("Warning: ... and more invalid SMILES skipped.")
+                    skipped_count += 1
+                    continue
+                # ------------------------
                 
                 item = {
                     'name': name, 
@@ -42,7 +69,6 @@ class CandidateGenerator:
                 if 'salt' in notes:
                     self.salts.append(item)
                 elif 'solvent' in notes or 'ether' in notes or 'carbonate' in notes:
-                    # Note: 'ether' or 'carbonate' often implies solvent if not explicitly additive
                     if 'additive' in notes:
                         self.additives.append(item)
                     else:
@@ -50,9 +76,10 @@ class CandidateGenerator:
                 elif 'additive' in notes:
                     self.additives.append(item)
                 else:
-                    # Fallback/Default behavior (optional: skip or treat as solvent)
                     pass
-                    
+            
+            print(f"Debug: Loaded {len(self.salts)} salts, {len(self.solvents)} solvents, {len(self.additives)} additives. (Skipped {skipped_count} invalid entries)")
+
         except Exception as e:
             print(f"Error loading inventory for generation: {e}")
             self.salts, self.solvents, self.additives = [], [], []
@@ -63,27 +90,33 @@ class CandidateGenerator:
         """
         candidates = []
         attempts = 0
-        max_attempts = n_candidates * 10 # Avoid infinite loops
+        max_attempts = n_candidates * 10 
+        
+        # Check if we have enough ingredients to work with
+        if not self.salts:
+            print("Error: No valid salts found in inventory.")
+            return []
+        if not self.solvents:
+            print("Error: No valid solvents found in inventory.")
+            return []
         
         while len(candidates) < n_candidates and attempts < max_attempts:
             attempts += 1
             
             try:
                 # 1. Select Components
-                # Strategy: 1 Salt + 1-3 Solvents + 0-2 Additives
-                if not self.salts or not self.solvents:
-                    break # Cannot generate without ingredients
-                
                 salt = random.choice(self.salts)
                 
                 n_solvents = random.randint(1, 3)
-                solvents = random.sample(self.solvents, k=min(n_solvents, len(self.solvents)))
+                # Ensure we don't try to sample more solvents than exist
+                k_solv = min(n_solvents, len(self.solvents))
+                solvents = random.sample(self.solvents, k=k_solv)
                 
                 n_additives = random.randint(0, 2)
+                additives = []
                 if self.additives:
-                    additives = random.sample(self.additives, k=min(n_additives, len(self.additives)))
-                else:
-                    additives = []
+                    k_add = min(n_additives, len(self.additives))
+                    additives = random.sample(self.additives, k=k_add)
 
                 # 2. Assign Amounts
                 components = []
@@ -123,13 +156,12 @@ class CandidateGenerator:
                 formulation = Formulation(
                     formulation_id=f"gen_{uuid.uuid4().hex[:8]}",
                     components=components,
-                    cycles_to_80=0.0, # Placeholder for candidate
+                    cycles_to_80=0.0, 
                     censored=False,
                     notes="Generated Candidate"
                 )
 
                 # 4. Safety Check
-                # If any component is forbidden, discard the whole formulation
                 is_safe = True
                 for comp in components:
                     if self.safety.is_forbidden(comp.smiles):

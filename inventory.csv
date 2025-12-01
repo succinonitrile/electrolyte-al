@@ -4,18 +4,18 @@ DME,COCCOC,TRUE,Sigma,DME
 LiPF6,[Li+].F[P-](F)(F)(F)(F)F,TRUE,Sigma,Lithium hexafluorophosphate; Standard commercial salt
 EC,O=C1OCCO1,TRUE,Sigma,Ethylene carbonate; High dielectric constant solvent
 DEC,CCOC(=O)OCC,TRUE,Sigma,Diethyl carbonate; Low viscosity solvent
-LiBF4,[Li+].[BF4-],TRUE,Sigma,Lithium tetrafluoroborate; Salt
+LiBF4,[Li+].F[B-](F)(F)F,TRUE,Sigma,Lithium tetrafluoroborate; Salt
 EMC,CCOC(=O)OC,TRUE,Sigma,Ethyl methyl carbonate; Low viscosity solvent
 HFE,CCOC(F)(F)OC,TRUE,Synquest,Fluorinated ether solvent (Structure varies by specific isomer)
-LiNO3,[Li+].[NO3-],TRUE,Sigma,Lithium nitrate; Common additive for Li-metal anodes
+LiNO3,[Li+].[O-][N+](=O)[O-],TRUE,Sigma,Lithium nitrate; Common additive for Li-metal anodes
 VC,C=COC(=O)O,TRUE,Sigma,Vinylene carbonate; SEI-forming additive
 DCEE,ClCCOCCCl,TRUE,Sigma,Bis(2-chloroethyl) ether; Chlorinated ether solvent
 DMC,COC(=O)OC,TRUE,Sigma,Dimethyl carbonate; Low viscosity solvent
-LiDFOB,[Li+].B(OC(CF3)F)2F2,TRUE,Sigma,Lithium difluoro(oxalato)borate (Input SMILES specific); Salt/Additive
+LiDFOB,[Li+].F[B-]1(F)OC(=O)C(=O)O1,TRUE,Sigma,Lithium difluoro(oxalato)borate (Input SMILES specific); Salt/Additive
 LiPO2F2,[Li+].OP(=O)(F)O[O-],TRUE,Sigma,Lithium difluorophosphate; Cathode interface additive
 PC,O=C1CCC(O1)C,TRUE,Sigma,Propylene carbonate; Wide liquid range solvent
 LiBOB,[Li+].[O-]C(=O)OCC(=O)[O-],TRUE,Sigma,Lithium bis(oxalato)borate; Salt/Additive
-LiTFSI,[Li+].N(S(=O)2CF3)S(=O)2CF3,TRUE,Sigma,Lithium bis(trifluoromethanesulfonyl)imide; Stable salt
+LiTFSI,[Li+].N(S(=O)(=O)C(F)(F)F)S(=O)(=O)C(F)(F)F,TRUE,Sigma,Lithium bis(trifluoromethanesulfonyl)imide; Stable salt
 DMP,COC(C)OC,TRUE,Sigma,"2,2-Dimethoxypropane; Acetal/Ether solvent"
 FEC,O=C1OCC(F)O1,TRUE,Sigma,Fluoroethylene carbonate; Fluorinated solvent/additive
 BDFE,C(COCC(F)F)OCC(F)F,TRUE,Sigma,Fluorinated ether solvent; High voltage stability
@@ -92,7 +92,7 @@ Fluorinated ether 19,CCOC(F)(F)C(F)C(F)(F)F,TRUE,Synquest,Fluorinated ether
 [cite_start]FE5,CC(C(F)(F)F)(F)C(C)OC,TRUE,Fluoryx Labs,Hydrofluoroether [cite: 92]
 FE6,CCOC(=O)c1ccc(OC(F)C(F)F)cc1,TRUE,Fluoryx Labs,Hydrofluoroether
 FE7,COC(F)(F)C(F)F,TRUE,Fluoryx Labs,Hydrofluoroether
-FE8,COC(F)(F)C(F)CF3,TRUE,Fluoryx Labs,Hydrofluoroether
+FE8,COC(F)(F)C(F)C(F)(F)F,TRUE,Fluoryx Labs,Hydrofluoroether
 FE9,CCOC(F)(F)C(F)F,TRUE,Fluoryx Labs,Hydrofluoroether
 FE10,COC(CF3)(CF3)C(F)C(F)(F)CF3,TRUE,Fluoryx Labs,Hydrofluoroether
 FE11,COC(C(F)F)C(F)(F)C(F)F,TRUE,Fluoryx Labs,Hydrofluoroether
@@ -210,7 +210,7 @@ Methyl 2 (trifluoromethyl)isonicotinate,COC(=O)C1=CC(=NC=C1)C(F)(F)F,TRUE,Aladdi
 4 Bromophenyl trifluoromethanesulfonate,C1=CC(=CC=C1OS(=O)(=O)C(F)(F)F)Br,TRUE,Aladdin,Triflate additive
 2 Bromo 1 3 difluoro 5 (trifluoromethyl)benzene,C1=C(C=C(C(=C1F)Br)F)C(F)(F)F,TRUE,Aladdin,Halogenated benzene
 2 2 2 trifluoro 1 phenylethanamine,C1=CC=C(C=C1)C(C(F)(F)F)N,FALSE,Aladdin,Amine; Protic/Reactive with Li
-2 3 Dichlorofluorobenzene,C6H3Cl2F (Structure from name),TRUE,Aladdin,Halogenated benzene
+2 3 Dichlorofluorobenzene,Clc1c(F)c(Cl)ccc1 (Structure from name),TRUE,Aladdin,Halogenated benzene
 1 2 dichloro 3 fluorobenzene,C1=CC(=C(C(=C1)Cl)Cl)F,TRUE,Aladdin,Halogenated benzene
 2 4 5 Trifluorobenzylamine,C1=C(C(=CC(=C1F)F)F)CN,FALSE,Aladdin,Amine; Protic/Reactive with Li
 3 Aminophenylsulfurpentafluoride,C1=CC(=CC(=C1)S(F)(F)(F)(F)F)N,FALSE,Aladdin,Amine; Protic/Reactive with Li
@@ -324,13 +324,13 @@ ethyl 2 2 difluoro 2 (5 methylpyridin 2 yl)acetate,CCOC(=O)C(C1=NC=C(C=C1)C)(F)F
 4 ethyl 2 fluoro 1 phenylbenzene,CCC1=CC(=C(C=C1)C2=CC=C=C=C2)F,TRUE,Aladdin,Fluorinated biphenyl
 4 5 Dimethyl 2 (trimethylsilyl)phenyl trifluoromethanesulfonate,CC1=CC(=C(C=C1C)[Si](C)(C)C)OS(=O)(=O)C(F)(F)F,TRUE,Aladdin,Triflate additive
 Methyl 3 (trifluoromethoxy)benzoate,COC(=O)C1=CC(=CC=C1)OC(F)(F)F,TRUE,Aladdin,Fluorinated Ester
-Perfluoro alkyl phosphate,C27H25F34N2O8PS2,TRUE,Aladdin,Phosphate additive
+Perfluoro alkyl phosphate,FALSE_SMILES_INVALID,TRUE,Aladdin,Phosphate additive
 Perflurohexane sulphonyl fluoride(FC 6),C(C(C(C(F)(F)S(=O)(=O)F)(F)F)(F)F)(C(C(F)(F)F)(F)F)(F)F,TRUE,Aladdin,Fluorosulfonyl additive
 Nonafluoro 1 butanesulfonyl chloride,C(C(C(F)(F)S(=O)(=O)Cl)(F)F)(C(F)(F)F)(F)F,FALSE,Aladdin,Sulfonyl Chloride; Reactive with Li
 Trifluoromethyltrifluoromethanesulfonate,C(OS(=O)(=O)C(F)(F)F)(F)(F)F,TRUE,Aladdin,Triflate additive
 1 (Perfluorobut 1 yl)pentane,CCCCCC(C(C(C(F)(F)F)(F)F)(F)F)(F)F,TRUE,Aladdin,Fluorocarbon Solvent
 2 [2 (Trifluoromethoxy) hexafluoropropoxy]tetrafluoropropanoic acid,C(=O)(C(C(F)(F)F)(OC(C(C(F)(F)F)(OC(F)(F)F)F)F)F)O (approx structure),FALSE,Aladdin,Acid; Protic/Reactive with Li
-1 1 Difluoro 2 iodoethylene,C(=C(I)H)(F)F,TRUE,Aladdin,Iodinated additive
+1 1 Difluoro 2 iodoethylene,FC(F)=CI,TRUE,Aladdin,Iodinated additive
 Perfluoroalkylethyl acrylate,C=CC(=O)OCCC(F)(F)F,TRUE,Aladdin,Fluorinated monomer
 3 (Perfluorooctyl)propyl acrylate,C=CC(=O)OCCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,TRUE,Aladdin,Fluorinated monomer
 Perfluoro 2 5 dimethyl 3 6 dioxaoctanoic acid,C8HF15O4,FALSE,Aladdin,Acid; Protic/Reactive with Li
@@ -845,7 +845,7 @@ Triphenyl Phosphite,O=P(Oc1ccccc1)(Oc2ccccc2)Oc3ccccc3,TRUE,Sigma,Phosphite
 1 Bromohexane,CCCCCCBr,TRUE,Sigma,Dense liquid
 1 Bromoheptane,CCCCCCCBr,TRUE,Sigma,Dense liquid
 1 Bromooctane,CCCCCCCCBr,TRUE,Sigma,Dense liquid
-1 Bromononane,CCCCCCCCCBr,TRUE,Sigma,Dense liquid
+1 BromonoINVALID_ENTRYe,CCCCCCCCCBr,TRUE,Sigma,Dense liquid
 1 Bromodecane,CCCCCCCCCCBr,TRUE,Sigma,Dense liquid
 1 Bromododecane,CCCCCCCCCCCCBr,TRUE,Sigma,Dense liquid
 1 Iodopropane,CCCI,TRUE,Sigma,Dense liquid; Alkylating agent
@@ -865,7 +865,7 @@ Dibromomethane,BrCBr,TRUE,Sigma,Dense liquid
 1 2 Dichlorobutane,CCC(Cl)CCl,TRUE,Sigma,Halogenated solvent
 1 4 Dichlorobutane,ClCCCCCl,TRUE,Sigma,Halogenated solvent
 1 5 Dichloropentane,ClCCCCCCl,TRUE,Sigma,Halogenated solvent
-Nonane,CCCCCCCCC,TRUE,Sigma,Linear alkane
+NoINVALID_ENTRYe,CCCCCCCCC,TRUE,Sigma,Linear alkane
 Undecane,CCCCCCCCCCC,TRUE,Sigma,Linear alkane
 Tridecane,CCCCCCCCCCCCC,TRUE,Sigma,Linear alkane
 Pentadecane,CCCCCCCCCCCCCCC,TRUE,Sigma,Linear alkane
@@ -877,7 +877,7 @@ Eicosane,CCCCCCCCCCCCCCCCCCCC,TRUE,Sigma,Alkane (Solid)
 4 Methylheptane,CCCC(C)CCC,TRUE,Sigma,Branched alkane
 2 2 Dimethylhexane,CCCCC(C)(C)C,TRUE,Sigma,Branched alkane
 2 5 Dimethylhexane,CC(C)CCC(C)C,TRUE,Sigma,Branched alkane
-Cyclononane,C1CCCCCCCC1,TRUE,Sigma,Cyclic alkane
+CyclonoINVALID_ENTRYe,C1CCCCCCCC1,TRUE,Sigma,Cyclic alkane
 Cyclodecane,C1CCCCCCCCC1,TRUE,Sigma,Cyclic alkane
 Ethylcyclohexane,CCC1CCCCC1,TRUE,Sigma,Cyclic alkane
 Propylcyclohexane,CCCC1CCCCC1,TRUE,Sigma,Cyclic alkane
@@ -911,8 +911,8 @@ Methyl Heptanoate,CCCCCCC(=O)OC,TRUE,Sigma,Fatty ester
 Ethyl Heptanoate,CCCCCCC(=O)OCC,TRUE,Sigma,Fatty ester
 Methyl Octanoate,CCCCCCCC(=O)OC,TRUE,Sigma,Fatty ester (Caprylate)
 Ethyl Octanoate,CCCCCCCC(=O)OCC,TRUE,Sigma,Fatty ester
-Methyl Nonanoate,CCCCCCCCC(=O)OC,TRUE,Sigma,Fatty ester
-Ethyl Nonanoate,CCCCCCCCC(=O)OCC,TRUE,Sigma,Fatty ester
+Methyl NoINVALID_ENTRYoate,CCCCCCCCC(=O)OC,TRUE,Sigma,Fatty ester
+Ethyl NoINVALID_ENTRYoate,CCCCCCCCC(=O)OCC,TRUE,Sigma,Fatty ester
 Methyl Decanoate,CCCCCCCCCC(=O)OC,TRUE,Sigma,Fatty ester (Caprate)
 Ethyl Decanoate,CCCCCCCCCC(=O)OCC,TRUE,Sigma,Fatty ester
 Methyl Laurate,CCCCCCCCCCCC(=O)OC,TRUE,Sigma,Fatty ester
@@ -945,10 +945,10 @@ Tetrahydrothiopyran,C1CCSCC1,TRUE,Sigma,Cyclic sulfide
 2 Octanone,CCCCCCC(C)=O,TRUE,Sigma,Ketone
 3 Octanone,CCCCCC(=O)CC,TRUE,Sigma,Ketone
 4 Octanone,CCCCC(=O)CCC,TRUE,Sigma,Ketone
-2 Nonanone,CCCCCCCC(C)=O,TRUE,Sigma,Ketone
-3 Nonanone,CCCCCCC(=O)CC,TRUE,Sigma,Ketone
-4 Nonanone,CCCCCC(=O)CCC,TRUE,Sigma,Ketone
-5 Nonanone,CCCCC(=O)CCCC,TRUE,Sigma,Ketone
+2 NoINVALID_ENTRYone,CCCCCCCC(C)=O,TRUE,Sigma,Ketone
+3 NoINVALID_ENTRYone,CCCCCCC(=O)CC,TRUE,Sigma,Ketone
+4 NoINVALID_ENTRYone,CCCCCC(=O)CCC,TRUE,Sigma,Ketone
+5 NoINVALID_ENTRYone,CCCCC(=O)CCCC,TRUE,Sigma,Ketone
 2 Decanone,CCCCCCCCC(C)=O,TRUE,Sigma,Ketone
 Cyclobutanone,O=C1CCC1,TRUE,Sigma,Cyclic ketone
 2 Methylcyclohexanone,CC1CCCCC1=O,TRUE,Sigma,Cyclic ketone
@@ -1065,7 +1065,7 @@ Isovaleraldehyde,CC(C)CC=O,FALSE,Sigma,Aldehyde
 Hexanal,CCCCCC=O,FALSE,Sigma,Aldehyde
 Heptanal,CCCCCCC=O,FALSE,Sigma,Aldehyde
 Octanal,CCCCCCCC=O,FALSE,Sigma,Aldehyde
-Nonanal,CCCCCCCCC=O,FALSE,Sigma,Aldehyde
+NoINVALID_ENTRYal,CCCCCCCCC=O,FALSE,Sigma,Aldehyde
 Decanal,CCCCCCCCCC=O,FALSE,Sigma,Aldehyde
 Acrolein,C=CC=O,FALSE,Sigma,Aldehyde (Reactive)
 Crotonaldehyde,C/C=C/C=O,FALSE,Sigma,Aldehyde
@@ -1085,7 +1085,7 @@ Cyclohexanol,OC1CCCCC1,FALSE,Sigma,Alcohol
 1 Heptanol,CCCCCCCO,FALSE,Sigma,Alcohol
 1 Octanol,CCCCCCCCO,FALSE,Sigma,Alcohol
 2 Ethylhexanol,CCCCC(CC)CO,FALSE,Sigma,Alcohol
-1 Nonanol,CCCCCCCCCO,FALSE,Sigma,Alcohol
+1 NoINVALID_ENTRYol,CCCCCCCCCO,FALSE,Sigma,Alcohol
 1 Decanol,CCCCCCCCCCO,FALSE,Sigma,Alcohol
 Allylamine,C=CCN,FALSE,Sigma,Amine
 Propylamine,CCCN,FALSE,Sigma,Amine
@@ -1115,7 +1115,7 @@ Methylhydrazine,CN,FALSE,Sigma,Reactive
 Isovaleric Acid,CC(C)CC(=O)O,FALSE,Sigma,Acid
 Valeric Acid,CCCCC(=O)O,FALSE,Sigma,Acid
 Caproic Acid,CCCCCC(=O)O,FALSE,Sigma,Acid
-Enanthic Acid,CCCCCCC(=O)O,FALSE,Sigma,Acid
+EINVALID_ENTRYthic Acid,CCCCCCC(=O)O,FALSE,Sigma,Acid
 Caprylic Acid,CCCCCCCC(=O)O,FALSE,Sigma,Acid
 Pelargonic Acid,CCCCCCCCC(=O)O,FALSE,Sigma,Acid
 Capric Acid,CCCCCCCCCC(=O)O,FALSE,Sigma,Acid (Solid)
@@ -1160,7 +1160,7 @@ Triethyl Orthoacetate,CCOC(C)(OCC)OCC,TRUE,Sigma,Orthoester
 Trimethyl Orthoacetate,COC(C)(OC)OC,TRUE,Sigma,Orthoester
 Diethyl Carbonate,CCOC(=O)OCC,TRUE,Sigma,Carbonate (Repeat)
 Dimethyl Carbonate,COC(=O)OC,TRUE,Sigma,Carbonate (Repeat)
-Diphenyl Carbonate,c1ccc(Oc2ccccc2)OC(=O)c3ccccc3,TRUE,Sigma,Carbonate (Repeat)
+Diphenyl Carbonate,O=C(Oc1ccccc1)Oc2ccccc2,TRUE,Sigma,Carbonate (Repeat)
 Bis(2 ethylhexyl) Phthalate,CCCCC(CC)COC(=O)c1ccccc1C(=O)OCC(CC)CCCC,TRUE,Sigma,Plasticizer (DEHP)
 Bis(2 ethylhexyl) Adipate,CCCCC(CC)COC(=O)CCCCC(=O)OCC(CC)CCCC,TRUE,Sigma,Plasticizer (DEHA)
 Trioctyl Trimellitate,CCCCCCCCOC(=O)c1ccc(C(=O)OCCCCCCCC)c(c1)C(=O)OCCCCCCCC,TRUE,Sigma,Plasticizer
@@ -1173,7 +1173,7 @@ Thiolane,C1CCSC1,TRUE,Sigma,Tetrahydrothiophene (Repeat)
 Ethyl tert Butyl Ether,CCOC(C)(C)C,TRUE,Sigma,ETBE (Repeat)
 tert Amyl Methyl Ether,CCC(C)(C)OC,TRUE,Sigma,TAME (Repeat)
 Di n propyl Ketone,CCCC(=O)CCC,TRUE,Sigma,4-Heptanone (Repeat)
-Di n butyl Ketone,CCCCC(=O)CCCC,TRUE,Sigma,5-Nonanone (Repeat)
+Di n butyl Ketone,CCCCC(=O)CCCC,TRUE,Sigma,5-NoINVALID_ENTRYone (Repeat)
 N N' Dimethylpropyleneurea,CN1CCCN(C)C1=O,FALSE,Sigma,DMPU (Repeat)
 N N' Dimethylethyleneurea,CN1CCN(C)C1=O,FALSE,Sigma,DMI (Repeat)
 Hexamethylphosphoramide,CN(C)P(=O)(N(C)C)N(C)C,FALSE,Sigma,HMPA (Repeat)
